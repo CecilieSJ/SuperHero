@@ -1,20 +1,21 @@
+
+
 public class Database {
-    private SuperHero[] superHeroes;
 
-   /* public Database() {
+    private SuperHero superHeroes;
 
-        SuperHero[] hero = new SuperHero[]{heroName,superPower , strenght, creationYear};
+    public void dataBase() {
 
-        superheroes = new SuperHero[]{heroname, superPower,strenght,creationYear};
-
-        public SuperHero[] getsuperheroes(){
-            return superHeroes;
-        }
-
+        SuperHero helt1 = new SuperHero(superHeroes.getHeroName(), superHeroes.getSuperPower(), superHeroes.getStrenght(), superHeroes.getCreationYear());
+        SuperHero helt2 = new SuperHero(superHeroes.getHeroName(), superHeroes.getSuperPower(), superHeroes.getStrenght(), superHeroes.getCreationYear());
+        SuperHero helt3 = new SuperHero(superHeroes.getHeroName(), superHeroes.getSuperPower(), superHeroes.getStrenght(), superHeroes.getCreationYear());
+        SuperHero helt4 = new SuperHero(superHeroes.getHeroName(), superHeroes.getSuperPower(), superHeroes.getStrenght(), superHeroes.getCreationYear());
+        SuperHero helt5 = new SuperHero(superHeroes.getHeroName(), superHeroes.getSuperPower(), superHeroes.getStrenght(), superHeroes.getCreationYear());
 
 
-    }*/
+        SuperHero[] superHeroArray = new SuperHero[]{helt1,helt2, helt3,helt4,helt5};
+
+
+
+    }
 }
-/* Database klasse med et array til superhelt-objekter (du kan her i starten af projektet nøjes med at
-     gøre plads til 5 superhelte). Klassen skal desuden have en metode til at modtage data om en superhelt,
-    så den kan oprette og indsætte et superhelt-objekt i sit array.*/
