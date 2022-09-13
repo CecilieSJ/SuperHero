@@ -2,16 +2,16 @@
 public class SuperHero {
 
     private String heroName;
+    private String realName;
     private String superPower;
-    private String strenght;
     private int creationYear;
     private boolean ishuman;
 
 
-    public SuperHero(String heroName, String superPower, String strenght, boolean ishuman, int creationYear) {
+    public SuperHero(String heroName, String realName, String superPower, boolean ishuman, int creationYear) {
         this.heroName = heroName;
+        this.realName = realName;
         this.superPower = superPower;
-        this.strenght = strenght;
         this.ishuman = ishuman;
         this.creationYear = creationYear;
 
@@ -22,13 +22,13 @@ public class SuperHero {
     }
 
 
-    public String getSuperPower(){
-        return superPower;
+    public String getRealName(){
+        return realName;
     }
 
 
-    public String getStrenght() {
-        return strenght;
+    public String getSuperPower() {
+        return superPower;
     }
 
     public int getCreationYear() {
@@ -39,8 +39,9 @@ public class SuperHero {
         return ishuman;
     }
 
+    @Override
     public String toString(){
-        return heroName + " " + superPower + " " + strenght + " " + creationYear;
+        return heroName + " " + realName + " " + superPower + " " + creationYear;
     }
 
 
