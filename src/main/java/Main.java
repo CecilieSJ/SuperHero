@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Database database = new Database();
-        ArrayList<String> superHeroes = new ArrayList<>();
 
         int menu;
 
@@ -33,23 +32,17 @@ public class Main {
                 int creationYear = scan.nextInt();
 
                 System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
-                database.createSuperhero(heroName, realName, superPower, ishuman, creationYear);
 
-                SuperHero hero1 = new SuperHero(heroName, realName, superPower, ishuman, creationYear);
-                superHeroes.add(hero1 + "hero1");
-                System.out.println("\nDu har nu tilføjet: " + hero1 + " til databasen");
+                database.createSuperhero(heroName, realName,superPower, ishuman, creationYear);
+               System.out.println("\nDu har nu tilføjet en ny superhelt!!");
 
             } else if (menu == 2) {
-                System.out.println(superHeroes.get(0));
-                System.out.println(superHeroes.get(1));
-                System.out.println(superHeroes.get(2));
+                System.out.println(database.getSuperHeroes());
 
-           /* } else (menu == 9) {
+            }  else if (menu == 9) {
                 System.out.println("Afsluttet");
-            }*/
-
-
             }
+
 
         }while (menu != 9 && menu != 2) ;
     }

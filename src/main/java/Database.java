@@ -2,17 +2,23 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private SuperHero[] listen = new SuperHero[5];
-    private int index = 0;
+    private ArrayList<SuperHero> superHeroes = new ArrayList<>();
+  //  private SuperHero[] listen = new SuperHero[5];
+   // private int index = 0;
 
     public void createSuperhero(String heroName, String realName, String superPower, boolean ishuman, int creationYear) {
 
         SuperHero hero = new SuperHero(heroName,realName,superPower,ishuman, creationYear );
 
-        listen[index] = hero;
-        index++;
+        superHeroes.add(hero);
 
-        ArrayList<String> superHeroes = new ArrayList<>();
+        //SuperHero[index] = hero;
+        // index++;
 
+
+    }
+
+    public ArrayList<SuperHero> getSuperHeroes() {
+        return superHeroes;
     }
 }
