@@ -5,7 +5,7 @@ public class SuperHero {
     private String realName;
     private String superPower;
     private int creationYear;
-    private boolean ishuman;
+    private boolean ishuman = true;
 
 
     public SuperHero(String heroName, String realName, String superPower, boolean ishuman, int creationYear) {
@@ -21,6 +21,10 @@ public class SuperHero {
         return heroName;
     }
 
+    public void setHeroName(String heroName){
+        this.heroName = heroName;
+
+    }
 
     public String getRealName(){
         return realName;
