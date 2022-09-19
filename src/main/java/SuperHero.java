@@ -30,7 +30,7 @@ public class SuperHero {
         return realName;
     }
 
-    public void setRealName(){
+    public void setRealName(String realName){
         this.realName = realName;
     }
 
@@ -39,7 +39,7 @@ public class SuperHero {
         return superPower;
     }
 
-    public void setSuperPower(){
+    public void setSuperPower(String superPower){
         this.superPower = superPower;
     }
 
@@ -47,7 +47,7 @@ public class SuperHero {
         return creationYear;
     }
 
-    public void setCreationYear(){
+    public void setCreationYear(int creationYear){
         this.creationYear = creationYear;
     }
 

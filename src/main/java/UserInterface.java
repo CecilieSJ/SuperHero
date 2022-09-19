@@ -9,7 +9,6 @@ public class UserInterface {
     public void startMenu() {
 
         database.createTestData();
-
         int menu;
 
         do {
@@ -51,16 +50,6 @@ public class UserInterface {
         System.out.print("Er din superhelt menneske eller ej (true/false): ");
         boolean ishuman = scan.nextBoolean();
 
-               /* String input = scan.nextLine();
-                switch (input) {   //
-                    case "ja" -> {
-                        boolean ishuman = true;
-                    }
-                    case "nej" -> {
-                       boolean ishuman = false;
-                    }
-                    default -> System.out.println("Invald input");
-                }*/
 
         System.out.print("Indtast superheltens oprettelsesår (fx. 1838): ");
         int creationYear = scan.nextInt();
@@ -69,8 +58,6 @@ public class UserInterface {
 
         database.createSuperhero(heroName, realName, superPower, ishuman, creationYear);
         System.out.println("\nDu har nu tilføjet en ny superhelt!!");
-
-
     }
 
     public void listOfHeroes() {
@@ -125,6 +112,7 @@ public class UserInterface {
             scan.nextLine();
             SuperHero hero = searchResult.get(number - 1);
 
+
             System.out.println("Skriv det nye superheltenavn eller tryk enter for at beholde det nyværende");
             String heroName = scan.nextLine();
 
@@ -136,25 +124,21 @@ public class UserInterface {
             String realName = scan.nextLine();
 
             if (!realName.isEmpty()) {
-                hero.setRealName();
+                hero.setRealName(realName);
             }
 
             System.out.println("Skriv den nye superpower eller tryk enter");
             String superPower = scan.nextLine();
 
             if (!superPower.isEmpty()) {
-                hero.setSuperPower();
+                hero.setSuperPower(superPower);
             }
-
-            //System.out.println("Er dine helt menneske? (true/false)");
-            //boolean ishuman = scan.nextBoolean();
-            //if()
 
             System.out.println("Skriv oprindelsesåret for din superhelt");
             String creationYear = scan.nextLine();
 
             if (!creationYear.isEmpty()) {
-                hero.setCreationYear();
+                hero.setCreationYear(Integer.parseInt(creationYear));
             }
 
             System.out.println("Din nyredigeret superhelt: " + hero);
