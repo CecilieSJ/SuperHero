@@ -30,13 +30,25 @@ public class SuperHero {
         return realName;
     }
 
+    public void setRealName(){
+        this.realName = realName;
+    }
+
 
     public String getSuperPower() {
         return superPower;
     }
 
+    public void setSuperPower(){
+        this.superPower = superPower;
+    }
+
     public int getCreationYear() {
         return creationYear;
+    }
+
+    public void setCreationYear(){
+        this.creationYear = creationYear;
     }
 
     public boolean getishuman(){
