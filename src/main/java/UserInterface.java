@@ -93,19 +93,36 @@ public class UserInterface {
 
         System.out.println("Indtast navnet på den superhelt du ønsker at finde");
         String searchTerm = scan.next();
-        SuperHero superhero = database.searchFor(searchTerm);
-        System.out.println(superhero);
+        ArrayList<SuperHero> searchResult = database.searchFor(searchTerm);
+
+        if (searchResult.isEmpty()) {
+            System.out.println("Ingen superhelte fundet");
+
+        } else{
+            System.out.println("Superhelte fundet: ");
+            for(SuperHero superHero : searchResult){
+                System.out.println(superHero);
+
+            }
+
+        }
     }
 
-    public void editHero() {
 
-        System.out.println("Indtast navnet på den superhelt du vil ændre superheltenavnet på");
-        String searchTerm = scan.nextLine();
-        SuperHero superhero = database.searchFor(searchTerm);
-        System.out.println(superhero);
-        System.out.println("Hvad ønsker du din Superhelt skal hedde?4");
-        String heroName = scan.nextLine();
-        superhero.setHeroName(heroName);
+        public void editHero() {
+
+            System.out.println("Indtast navnet på den superhelt du vil ændre superheltenavnet på");
+            String searchTerm = scan.nextLine();
+            ArrayList<SuperHero> searchResult = database.searchFor(searchTerm);
+            //SuperHero superhero = database.searchFor(searchTerm);
+            System.out.println(searchResult);
+            System.out.println("Hvad ønsker du din Superhelt skal hedde?");
+            String heroName1 = scan.nextLine();
+            System.out.println("Superheltens nye navn: " + heroName1);
+           //SuperHero.setheroName(heroName1);
+        }
     }
-}
+
+
+
 

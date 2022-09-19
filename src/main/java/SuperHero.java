@@ -45,7 +45,7 @@ public class SuperHero {
 
     @Override
     public String toString(){
-        return heroName + " " + realName + " " + superPower + " " + creationYear;
+        return "│Superheltens navn: " + heroName + "\n│Rigtige navn: " + realName + "\n│Superpower: " + superPower + "\n│Oprindelsesår: " + creationYear +"│\n";
     }
 
 
