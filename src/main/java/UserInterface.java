@@ -12,12 +12,16 @@ public class UserInterface {
         database.createTestData();
         boolean writingError = false;
         int menu;
-
         do {
-            System.out.println("Velkommen til SuperHelte Universet\n" + "-".repeat(35) + "\n1. Opret Superhelt \n2. Se liste over Superhelte \n3. Søg efter Superhelt \n4. Rediger superheltenavnet \n9. Afslut");
+
+            System.out.println("Velkommen til SuperHelte Universet\n" + "-".repeat(35) +
+                    "\n1. Opret Superhelt " +
+                    "\n2. Se liste over Superhelte " +
+                    "\n3. Søg efter Superhelt " +
+                    "\n4. Rediger superheltenavnet " +
+                    "\n9. Afslut");
 
             try {
-
                 menu = scan.nextInt();
                 scan.nextLine();
                 writingError = false;
@@ -38,17 +42,19 @@ public class UserInterface {
                     System.exit(0);
                 }
             } catch (InputMismatchException ime) {
-                System.out.println("Der skete desværre en fejl! Indtast venligst nummeret på den funktion i menuen du ønsker");
+                System.out.println("Der skete desværre en fejl!");
                 scan.nextLine();
                 writingError = true;
             }
 
 
-        } while (writingError == true);
+        } while (menu!= 9 || writingError == true);
+
     }
 
 
     public void addHero() {
+
 
         System.out.print("Venligst indtast superheltens navn (fx.Superman):");
         String heroName = scan.nextLine();
@@ -59,17 +65,47 @@ public class UserInterface {
         System.out.println("Indtast superheltens superkraft (fx. flyve): ");
         String superPower = scan.nextLine();
 
+
+
         System.out.print("Er din superhelt menneske eller ej (true/false): ");
-        boolean ishuman = scan.nextBoolean();
+        boolean writingError = false;   //Virker ikke ordentligt
+        boolean ishuman = true;
+
+        do{
+            try {
+                ishuman = scan.nextBoolean();
+                scan.nextLine();
+                writingError = false;
+            }catch (InputMismatchException vv){
+                System.out.println("Der skete en fejl, prøv igen!");
+               // scan.nextLine();
+            }
+
+        }while (writingError==true);
 
 
         System.out.print("Indtast superheltens oprettelsesår (fx. 1838): ");
-        int creationYear = scan.nextInt();
+        int creationYear = 0;
+        boolean writingError1 = false;
+        do {
+            try {
+                 creationYear = scan.nextInt();
+                 scan.nextLine();
+                 writingError1 = false;
+            }catch(InputMismatchException nn){
+                System.out.print("Der skete en fejl, prøv igen");
+                scan.nextLine();
+                writingError1 = true;
+            }
+        }while(writingError1==true);
 
-        System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
 
-        database.createSuperhero(heroName, realName, superPower, ishuman, creationYear);
-        System.out.println("\nDu har nu tilføjet en ny superhelt!!");
+                System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
+
+                database.addSuperHero(heroName, realName, superPower, ishuman, creationYear);
+                System.out.println("\nDu har nu tilføjet en ny superhelt!!");
+
+
     }
 
     public void listOfHeroes() {
@@ -103,6 +139,7 @@ public class UserInterface {
             }
 
         }
+
     }
 
     public void editHero() {
@@ -148,6 +185,7 @@ public class UserInterface {
                 hero.setSuperPower(superPower);
             }
 
+
             System.out.println("Skriv oprindelsesåret for din superhelt");
             do {
                 String creationYear = scan.nextLine();
@@ -156,19 +194,19 @@ public class UserInterface {
                     try {
                         hero.setCreationYear(Integer.parseInt(creationYear));
                         writingError = false;
-                    } catch ( NumberFormatException in) {
+                    } catch (NumberFormatException in) {
                         System.out.println("Der opstod en fejl. Prøv igen");
-                     scan.nextLine();  //Den gemmer ikke svaret!
+                        scan.nextLine();  //Den gemmer ikke svaret!
                         writingError = true;
                     }
 
-                    System.out.println("Din nyredigeret superhelt: " + hero);
+                    System.out.println("Din nyredigeret superhelt:\n " + hero);
                     writingError = false;
                 }
 
 
-            }while (writingError == true) ;
-            //} while (writingError == true);
+            } while (writingError == true);
+
 
         }
 
