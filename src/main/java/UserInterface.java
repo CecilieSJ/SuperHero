@@ -11,7 +11,7 @@ public class UserInterface {
 
         database.createTestData();
         boolean writingError = false;
-        int menu;
+        int menu = 0;
         do {
 
             System.out.println("Velkommen til SuperHelte Universet\n" + "-".repeat(35) +
@@ -48,7 +48,8 @@ public class UserInterface {
             }
 
 
-        } while (menu!= 9 || writingError == true);
+        } while (menu != 9 || writingError == true);
+
 
     }
 
@@ -66,22 +67,21 @@ public class UserInterface {
         String superPower = scan.nextLine();
 
 
-
         System.out.print("Er din superhelt menneske eller ej (true/false): ");
         boolean writingError = false;   //Virker ikke ordentligt
         boolean ishuman = true;
 
-        do{
+        do {
             try {
                 ishuman = scan.nextBoolean();
                 scan.nextLine();
                 writingError = false;
-            }catch (InputMismatchException vv){
+            } catch (InputMismatchException vv) {
                 System.out.println("Der skete en fejl, prøv igen!");
-               // scan.nextLine();
+                scan.nextLine();
             }
 
-        }while (writingError==true);
+        } while (writingError == true);
 
 
         System.out.print("Indtast superheltens oprettelsesår (fx. 1838): ");
@@ -89,21 +89,21 @@ public class UserInterface {
         boolean writingError1 = false;
         do {
             try {
-                 creationYear = scan.nextInt();
-                 scan.nextLine();
-                 writingError1 = false;
-            }catch(InputMismatchException nn){
+                creationYear = scan.nextInt();
+                scan.nextLine();
+                writingError1 = false;
+            } catch (InputMismatchException nn) {
                 System.out.print("Der skete en fejl, prøv igen");
                 scan.nextLine();
                 writingError1 = true;
             }
-        }while(writingError1==true);
+        } while (writingError1 == true);
 
 
-                System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
+        System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
 
-                database.addSuperHero(heroName, realName, superPower, ishuman, creationYear);
-                System.out.println("\nDu har nu tilføjet en ny superhelt!!");
+        database.addSuperHero(heroName, realName, superPower, ishuman, creationYear);
+        System.out.println("\nDu har nu tilføjet en ny superhelt!!");
 
 
     }
