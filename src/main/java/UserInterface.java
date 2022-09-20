@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -9,32 +10,43 @@ public class UserInterface {
     public void startMenu() {
 
         database.createTestData();
+        boolean writingError = false;
         int menu;
 
         do {
             System.out.println("Velkommen til SuperHelte Universet\n" + "-".repeat(35) + "\n1. Opret Superhelt \n2. Se liste over Superhelte \n3. Søg efter Superhelt \n4. Rediger superheltenavnet \n9. Afslut");
-            menu = scan.nextInt();
-            scan.nextLine();
-            if (menu == 1) {
-                addHero();
 
-            } else if (menu == 2) {
-                listOfHeroes();
+            try {
 
-            } else if (menu == 3) {
-                heroSearch();
+                menu = scan.nextInt();
+                scan.nextLine();
+                writingError = false;
+                if (menu == 1) {
+                    addHero();
 
-            } else if (menu == 4) {
-                editHero();
+                } else if (menu == 2) {
+                    listOfHeroes();
 
-            } else if (menu == 9) {
-                System.out.println("Afsluttet");
+                } else if (menu == 3) {
+                    heroSearch();
+
+                } else if (menu == 4) {
+                    editHero();
+
+                } else if (menu == 9) {
+                    System.out.println("Afsluttet");
+                    System.exit(0);
+                }
+            } catch (InputMismatchException ime) {
+                System.out.println("Der skete desværre en fejl! Indtast venligst nummeret på den funktion i menuen du ønsker");
+                scan.nextLine();
+                writingError = true;
             }
 
 
-        } while (menu != 9);
-
+        } while (writingError == true);
     }
+
 
     public void addHero() {
 
@@ -95,6 +107,7 @@ public class UserInterface {
 
     public void editHero() {
 
+        boolean writingError = false;
         System.out.println("Indtast navnet på den superhelt du ønsker at finde");
         String searchTerm = scan.next();
         ArrayList<SuperHero> searchResult = database.searchFor(searchTerm);
@@ -120,6 +133,7 @@ public class UserInterface {
                 hero.setHeroName(heroName);
             }
 
+
             System.out.println("Skriv et nyt navn eller tryk enter");
             String realName = scan.nextLine();
 
@@ -135,21 +149,31 @@ public class UserInterface {
             }
 
             System.out.println("Skriv oprindelsesåret for din superhelt");
-            String creationYear = scan.nextLine();
+            do {
+                String creationYear = scan.nextLine();
 
-            if (!creationYear.isEmpty()) {
-                hero.setCreationYear(Integer.parseInt(creationYear));
-            }
+                if (!creationYear.isEmpty()) {
+                    try {
+                        hero.setCreationYear(Integer.parseInt(creationYear));
+                        writingError = false;
+                    } catch ( NumberFormatException in) {
+                        System.out.println("Der opstod en fejl. Prøv igen");
+                     scan.nextLine();  //Den gemmer ikke svaret!
+                        writingError = true;
+                    }
 
-            System.out.println("Din nyredigeret superhelt: " + hero);
+                    System.out.println("Din nyredigeret superhelt: " + hero);
+                    writingError = false;
+                }
 
+
+            }while (writingError == true) ;
+            //} while (writingError == true);
 
         }
+
+
     }
-
-
 }
-
-
 
 
