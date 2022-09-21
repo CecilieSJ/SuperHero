@@ -53,7 +53,6 @@ public class UserInterface {
 
     }
 
-
     public void addHero() {
 
 
@@ -144,7 +143,6 @@ public class UserInterface {
 
     public void editHero() {
 
-        boolean writingError = false;
         System.out.println("Indtast navnet på den superhelt du ønsker at finde");
         String searchTerm = scan.next();
         ArrayList<SuperHero> searchResult = database.searchFor(searchTerm);
@@ -187,29 +185,27 @@ public class UserInterface {
 
 
             System.out.println("Skriv oprindelsesåret for din superhelt");
+            boolean writingError = false;
             do {
-                String creationYear = scan.nextLine();
-
-                if (!creationYear.isEmpty()) {
-                    try {
-                        hero.setCreationYear(Integer.parseInt(creationYear));
+                try {
+                    String newcreationYear = scan.nextLine();
+                    if (!newcreationYear.isEmpty()) {
+                        hero.setCreationYear(Integer.parseInt(newcreationYear));
                         writingError = false;
-                    } catch (NumberFormatException in) {
-                        System.out.println("Der opstod en fejl. Prøv igen");
-                        scan.nextLine();  //Den gemmer ikke svaret!
-                        writingError = true;
                     }
 
-                    System.out.println("Din nyredigeret superhelt:\n " + hero);
-                    writingError = false;
+                } catch (NumberFormatException e) {
+                    System.out.println("Der opstod en fejl. Prøv igen");
+                    scan.nextLine();  //Den gemmer ikke svaret!
+                    writingError = true;
                 }
+
+                System.out.println("Din nyredigeret superhelt:\n " + hero);
 
 
             } while (writingError == true);
 
-
         }
-
 
     }
 }

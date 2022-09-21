@@ -1,103 +1,104 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseTest {
+    private Database database;
 
-    @org.junit.jupiter.api.Test
+    @BeforeEach
+    void prepareTests() {
+        database = new Database();
+        database.createTestData();
+    }
+
+    @Test
     public void createSuperhero() {
+
         //Arrange test
         Database database = new Database();
 
         //Act on method
         database.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
+        ArrayList<SuperHero> results = database.getAllSuperHeroes();
+        int expectedDBSize = 1;
+        int actualSize = results.size();
 
         //Assert result
-        int expectedDBSize = 1;
-        int actualSize = database.getAllSuperHeroes().size();
         assertEquals(expectedDBSize, actualSize);
+        assertNotEquals(database.getAllSuperHeroes().get(0), null);
 
     }
 
+    @Test
+    public void createTestData() {
+
+        //Act on method
+        ArrayList<SuperHero> results = database.getAllSuperHeroes();
+        int expectedDBSize = 3;
+        int actualSize = results.size();
+
+        //Assert result
+        assertEquals(expectedDBSize, actualSize);
+
+    }
 
     @Test
     public void addSuperhero() {
-        //Arrange test
-        Database database = new Database();
-
+        Database database1 = new Database();
         //Act on method
-        database.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
-        database.addSuperHero("Batman", "Bruce Wayne", "Money", true, 1939);
+        database1.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
+        database1.addSuperHero("Batman", "Bruce Wayne", "Money", true, 1939);
+        int expectedDBSize = 2;
+        int actualSize = database1.getAllSuperHeroes().size();
 
         //Assert result
-        int expectedDBSize = 2;
-        int actualSize = database.getAllSuperHeroes().size();
         assertEquals(expectedDBSize, actualSize);
 
     }
+
     @Test
     public void searchZero() {
 
-        //Arrange
-        Database database = new Database();
+        //Act
+        ArrayList<SuperHero> searchResult = database.searchFor("ii");
+
         int expected = 0;
-        String search = "iii";
-
-        //Act
-        database.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
-        database.addSuperHero("Batman", "Bruce Wayne", "Money", true, 1939);
-        database.addSuperHero("Spider-man", "Peter Parker", "Spindevæv", true, 1938);
-        ArrayList<SuperHero> searchResult = database.searchFor(search);
-
         int actual = searchResult.size();
 
 
         //Assert
         assertEquals(expected, actual);
     }
-    @Test
-    public void searchFor() {
-
-        //Arrange
-        Database database = new Database();
-        int expected = 1;
-        String search = "Spider";
-
-        //Act
-        database.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
-        database.addSuperHero("Batman", "Bruce Wayne", "Money", true, 1939);
-        database.addSuperHero("Spider-man", "Peter Parker", "Spindevæv", true, 1938);
-        ArrayList<SuperHero> searchResult = database.searchFor(search);
-
-        int actual = searchResult.size();
-
-
-        //Assert
-        assertEquals(expected, actual);
-    }
-
 
     @Test
     public void searchOne() {
 
-        //Arrange
-        Database database = new Database();
-        int expected = 3;
-        String search = "man";
-
         //Act
-        database.addSuperHero("Superman", "Clark Kent", "flyve", true, 1838);
-        database.addSuperHero("Batman", "Bruce Wayne", "Money", true, 1939);
-        database.addSuperHero("Spider-man", "Peter Parker", "Spindevæv", true, 1938);
-        ArrayList<SuperHero> searchResult = database.searchFor(search);
+        ArrayList<SuperHero> searchResult = database.searchFor("Spider");
 
+        int expected = 1;
+        int actual = searchResult.size();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void searchMore() {
+        //Act
+        ArrayList<SuperHero> searchResult = database.searchFor("man");
+
+        int expected = 3;
         int actual = searchResult.size();
 
 
         //Assert
         assertEquals(expected, actual);
+        assertNotEquals(database.getAllSuperHeroes().get(0), null);
     }
 
 }
