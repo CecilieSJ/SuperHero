@@ -19,6 +19,7 @@ public class UserInterface {
                     "\n2. Se liste over Superhelte " +
                     "\n3. Søg efter Superhelt " +
                     "\n4. Rediger superheltenavnet " +
+                    "\n5. Slet superhelt" +
                     "\n9. Afslut");
 
             try {
@@ -36,6 +37,9 @@ public class UserInterface {
 
                 } else if (menu == 4) {
                     editHero();
+
+                } else if (menu == 5) {
+                    deleteSuperhero();
 
                 } else if (menu == 9) {
                     System.out.println("Afsluttet");
@@ -208,6 +212,38 @@ public class UserInterface {
         }
 
     }
-}
 
+    public void deleteSuperhero() {
+
+        System.out.print("Søg på en superhelt");
+        String searchTerm = scan.next();
+        ArrayList<SuperHero> searchResult = database.searchFor(searchTerm);
+
+        if (searchResult.isEmpty()) {
+            System.out.println("Ingen superhelte fundet");
+
+        } else {
+            System.out.println("Superhelte fundet: ");
+            for (int i = 0; i < searchResult.size(); i++) {
+                System.out.println(((i) + 1) + ") " + searchResult.get(i));
+            }
+            System.out.println("Vælg en superhelt");
+            int number = scan.nextInt();
+            scan.nextLine();
+            SuperHero hero = searchResult.get(number - 1);
+
+            System.out.print("Ønsker du at slette denne Superhelt? (true/false): " + hero);
+            boolean delete1 = scan.nextBoolean();
+            if (delete1 = true) {
+
+                database.deleteSuperhero(hero);
+
+                System.out.print("Fjerner Superhelt");
+
+            } else if (delete1 = false) {
+                System.out.println("Fjerner ikke" + hero);
+            }
+        }
+    }
+}
 

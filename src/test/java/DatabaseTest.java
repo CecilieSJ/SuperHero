@@ -101,6 +101,27 @@ class DatabaseTest {
         assertNotEquals(database.getAllSuperHeroes().get(0), null);
     }
 
+    @Test
+    public void deleteSuperHero() {
+
+        ArrayList<SuperHero> results = database.getAllSuperHeroes();
+
+        SuperHero superHero = results.get(0);
+        int expectedSize = results.size() - 1;
+        boolean actualResult = database.deleteSuperhero(superHero);
+
+        boolean expectedResult = true;
+        assertEquals(expectedResult, actualResult);
+
+
+        ArrayList<SuperHero> resultsAfterDelete = database.getAllSuperHeroes();
+        int actualSize = resultsAfterDelete.size();
+
+        assertEquals(expectedSize, actualSize);
+
+
+    }
+
 }
 
 

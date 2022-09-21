@@ -26,7 +26,6 @@ public class Database {
                 searchResult.add(superHero);
             }
         }
-
         return searchResult;
 
     }
@@ -34,6 +33,13 @@ public class Database {
 
     public ArrayList<SuperHero> getAllSuperHeroes() {
         return superHeroes;
+    }
+
+    public boolean deleteSuperhero(SuperHero superHero) {
+        boolean succes;
+        succes = superHeroes.remove(superHero);
+
+        return succes;
     }
 
 
