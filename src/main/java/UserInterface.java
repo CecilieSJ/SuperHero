@@ -188,27 +188,25 @@ public class UserInterface {
             }
 
 
-            System.out.println("Skriv oprindelsesåret for din superhelt");
             boolean writingError = false;
             do {
                 try {
+                    System.out.println("Skriv oprindelsesåret for din superhelt");
                     String newcreationYear = scan.nextLine();
                     if (!newcreationYear.isEmpty()) {
                         hero.setCreationYear(Integer.parseInt(newcreationYear));
-                        writingError = false;
                     }
+                    writingError = false;
 
                 } catch (NumberFormatException e) {
                     System.out.println("Der opstod en fejl. Prøv igen");
-                    scan.nextLine();  //Den gemmer ikke svaret!
                     writingError = true;
                 }
-
-                System.out.println("Din nyredigeret superhelt:\n " + hero);
 
 
             } while (writingError == true);
 
+            System.out.println("Din nyredigeret superhelt:\n " + hero);
         }
 
     }
@@ -234,13 +232,13 @@ public class UserInterface {
 
             System.out.print("Ønsker du at slette denne Superhelt? (true/false): " + hero);
             boolean delete1 = scan.nextBoolean();
-            if (delete1 = true) {
+            if (delete1 == true) {
 
                 database.deleteSuperhero(hero);
 
                 System.out.print("Fjerner Superhelt");
 
-            } else if (delete1 = false) {
+            } else if (delete1 == false) {
                 System.out.println("Fjerner ikke" + hero);
             }
         }
