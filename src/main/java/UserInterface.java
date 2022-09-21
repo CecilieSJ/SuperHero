@@ -70,21 +70,19 @@ public class UserInterface {
         String superPower = scan.nextLine();
 
 
-        System.out.print("Er din superhelt menneske eller ej (true/false): ");
-        boolean writingError = false;   //Virker ikke ordentligt
-        boolean ishuman = true;
+        System.out.print("Er din superhelt menneske eller ej (ja/nej): ");
+        String brugerInput = scan.nextLine();
+        boolean ishuman;
 
-        do {
-            try {
-                ishuman = scan.nextBoolean();
-                scan.nextLine();
-                writingError = false;
-            } catch (InputMismatchException vv) {
-                System.out.println("Der skete en fejl, prøv igen!");
-                scan.nextLine();
-            }
-
-        } while (writingError == true);
+        while (!brugerInput.equals("ja") && !brugerInput.equals("nej")) {
+            System.out.println("Du skal indtaste ja eller nej");
+            brugerInput = scan.nextLine();
+        }
+        if(brugerInput.equals("ja")){
+            ishuman = true;
+        }else {
+            ishuman = false;
+        }
 
 
         System.out.print("Indtast superheltens oprettelsesår (fx. 1838): ");
@@ -102,8 +100,15 @@ public class UserInterface {
             }
         } while (writingError1 == true);
 
+        String jaEllerNej;
+        if(ishuman){
+            jaEllerNej = "ja";
+        }else {
+            jaEllerNej = "nej";
+        }
 
-        System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + ishuman + "\nKarrakterens udgivelses år: " + creationYear);
+
+        System.out.print("Din superhelt er: " + heroName + "\nRigtige navn: " + realName + "\nSuperpower: " + superPower + "\nMenneske: " + jaEllerNej + "\nKarrakterens udgivelses år: " + creationYear);
 
         database.addSuperHero(heroName, realName, superPower, ishuman, creationYear);
         System.out.println("\nDu har nu tilføjet en ny superhelt!!");
