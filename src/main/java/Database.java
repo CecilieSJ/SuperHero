@@ -1,13 +1,19 @@
+import SuperHero.SuperHero;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import Comparator.*;
+
 
 public class Database {
 
-    private ArrayList<SuperHero> superHeroes = new ArrayList<>();
+    private ArrayList<SuperHero> superHeroDatabase = new ArrayList<>();
+    private boolean change = false;
 
     public void addSuperHero(String heroName, String realName, String superPower, boolean ishuman, int creationYear) {
 
         SuperHero hero = new SuperHero(heroName, realName, superPower, ishuman, creationYear);
-        superHeroes.add(hero);
+        superHeroDatabase.add(hero);
 
     }
 
@@ -21,7 +27,7 @@ public class Database {
     public ArrayList<SuperHero> searchFor(String searchTerm) {
         ArrayList<SuperHero> searchResult = new ArrayList<>();
 
-        for (SuperHero superHero : superHeroes) {
+        for (SuperHero superHero : superHeroDatabase) {
             if (superHero.getHeroName().toLowerCase().contains(searchTerm.toLowerCase())) {
                 searchResult.add(superHero);
             }
@@ -32,17 +38,52 @@ public class Database {
 
 
     public ArrayList<SuperHero> getAllSuperHeroes() {
-        return superHeroes;
+        return superHeroDatabase;
     }
 
     public boolean deleteSuperhero(SuperHero superHero) {
         boolean succes;
-        succes = superHeroes.remove(superHero);
+        succes = superHeroDatabase.remove(superHero);
 
         return succes;
     }
 
 
+    public void addAll(ArrayList<SuperHero> superheroes) {
+        superHeroDatabase.addAll(superheroes);
+    }
+
+    public boolean isChange() {
+        return change;
+    }
+    public void setChange(boolean change) {
+        this.change = change;
+
+    }
+
+    public void clearData() {
+        superHeroDatabase.clear();
+    }
+
+
+    public void sortNameMethod() throws IOException {
+        superHeroDatabase.sort(new HeroNameComparator());
+    }
+    public void sortSuperPower() {
+        superHeroDatabase.sort(new SuperPowerComparator());
+    }
+    public void sortSuperHeroRealName() {
+        superHeroDatabase.sort(new RealNameComparator());
+    }
+    public void sortCreationYear() {
+        superHeroDatabase.sort(new CreationYearComparator());
+    }
+    public void sortIsHuman() {
+        superHeroDatabase.sort(new IsHumanComparator());
+    }
+
 }
+
+
 
 

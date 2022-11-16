@@ -1,3 +1,4 @@
+package SuperHero;
 
 public class SuperHero {
 
@@ -7,6 +8,8 @@ public class SuperHero {
     private int creationYear;
     private boolean ishuman = true;
 
+    public SuperHero() {
+    }
 
     public SuperHero(String heroName, String realName, String superPower, boolean ishuman, int creationYear) {
         this.heroName = heroName;
@@ -53,6 +56,10 @@ public class SuperHero {
 
     public boolean getishuman(){
         return ishuman;
+    }
+
+    public void setIshuman(boolean human){
+        this.ishuman = ishuman;
     }
 
     @Override
